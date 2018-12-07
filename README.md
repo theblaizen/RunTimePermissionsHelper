@@ -7,6 +7,7 @@ Checklist:
 - [x] Handle after reject state permission check
 - [ ] Documentation
 - [ ] Full list of permissions in enum
+- [ ] Refactor code
 
 
 There are interfaces for interaction with **PermissionsHelper**:
