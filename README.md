@@ -1,7 +1,18 @@
 # RunTimePermissionsHelper
 
 
-There are interfaces(*PermissionAction*, *PermissionActions*) for interaction with **PermissionsHelper**:
+Checklist:
+- [x] Single permission check
+- [x] Miltiple permissions check
+- [x] Handle after reject state permission check
+- [ ] Documentation
+- [ ] Full list of permissions in enum
+
+
+There are interfaces for interaction with **PermissionsHelper**:
+- PermissionAction
+- PermissionActions
+
 ```kotlin
 interface PermissionAction {
     fun onPermissionGranted(permission: Permissions)
@@ -50,9 +61,3 @@ class MainActivity : AppCompatActivity(), PermissionsHelper.PermissionActions {
     }
 }
 ```
-
-Checklist:
-- [x] Single permission check
-- [x] Miltiple permissions check
-- [x] Handle after reject state permission check
-- [ ] Documentation
