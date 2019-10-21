@@ -18,7 +18,12 @@ object PermissionsHelper {
         }
     }
 
-    fun checkPermission(fragment: Fragment, context: Context, permission: Permissions, action: PermissionAction) {
+    fun checkPermission(
+        fragment: Fragment,
+        context: Context,
+        permission: Permissions,
+        action: PermissionAction
+    ) {
         val hasGranted = hasGranted(context.checkSelfPermission(permission.permission))
         if (hasGranted) {
             action.onPermissionGranted(permission)
@@ -27,7 +32,11 @@ object PermissionsHelper {
         }
     }
 
-    fun checkPermissions(context: Activity, permissions: Set<Permissions>, action: PermissionActions) {
+    fun checkPermissions(
+        context: Activity,
+        permissions: Set<Permissions>,
+        action: PermissionActions
+    ) {
         var hasGranted = false
         val permissionsList = ArrayList<String>()
 
@@ -49,7 +58,12 @@ object PermissionsHelper {
         }
     }
 
-    fun checkPermissions(fragment: Fragment, context: Context, permissions: Set<Permissions>, action: PermissionActions) {
+    fun checkPermissions(
+        fragment: Fragment,
+        context: Context,
+        permissions: Set<Permissions>,
+        action: PermissionActions
+    ) {
         var hasGranted = false
         val permissionsList = ArrayList<String>()
 
@@ -116,12 +130,16 @@ object PermissionsHelper {
     }
 
     fun hasGranted(grantResults: IntArray): Boolean {
-        for (result in grantResults) {
+        grantResults.foreach { result ->
             if (!hasGranted(result)) {
                 return false
             }
         }
         return true
+    }
+
+    private fun IntArray.foreach(block: (item: Int) -> Unit) {
+        for (item in this) block.invoke(item)
     }
 
     interface PermissionAction {
