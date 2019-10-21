@@ -42,11 +42,11 @@ object PermissionsHelper {
 
         if (permissions.isEmpty()) return
 
-        for (permission in permissions) {
+        permissions.forEach { permission ->
             permissionsList.add(permission.permission)
         }
 
-        for (permission in permissions) {
+        permissions.forEach { permission ->
             hasGranted = hasGranted(context.checkSelfPermission(permission.permission))
             if (!hasGranted) break
         }
@@ -69,11 +69,11 @@ object PermissionsHelper {
 
         if (permissions.isEmpty()) return
 
-        for (permission in permissions) {
+        permissions.forEach { permission ->
             permissionsList.add(permission.permission)
         }
 
-        for (permission in permissions) {
+        permissions.forEach { permission ->
             hasGranted = hasGranted(context.checkSelfPermission(permission.permission))
             if (!hasGranted) break
         }
@@ -87,7 +87,7 @@ object PermissionsHelper {
 
     fun grandPermissions(fragment: Fragment, permissions: Set<Permissions>) {
         val permissionsList = ArrayList<String>()
-        for (permission in permissions) {
+        permissions.forEach { permission ->
             permissionsList.add(permission.permission)
         }
         val permissionsArray = permissionsList.toTypedArray()
@@ -100,7 +100,7 @@ object PermissionsHelper {
 
     fun grandPermissions(context: Activity, permissions: Set<Permissions>) {
         val permissionsList = ArrayList<String>()
-        for (permission in permissions) {
+        permissions.forEach { permission ->
             permissionsList.add(permission.permission)
         }
         val permissionsArray = permissionsList.toTypedArray()
@@ -114,10 +114,10 @@ object PermissionsHelper {
     fun showPermissionReasonDialog(context: Activity, permissions: Set<Permissions>): Boolean {
         var hasGranted = false
         var permissionNotGranted: Permissions = Permissions.PERMISSION_MISSING
-        for (permission in permissions) {
+        permissions.forEach { permission ->
             permissionNotGranted = permission
             hasGranted = hasGranted(context.checkSelfPermission(permission.permission))
-            if (!hasGranted) break
+            if (!hasGranted) return@forEach
         }
 
         if (hasGranted) return true
